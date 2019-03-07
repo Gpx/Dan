@@ -102,14 +102,13 @@ export default function ${name}() {
   );
   fs.writeFileSync(
     `./src/app/hooks/${name}/${name}.test.js`,
-    `import { renderHook, cleanup } from 'react-hooks-testing-library'
+    `import { renderHook } from 'react-hooks-testing-library'
+import ${name} from './${name}'
 
 describe('${name}()', () => {
-  afterEach(cleanup)
-
   it('CHANGE THIS DESCRIPTION!!!', () => {
-    const result = renderHook(() => ${name}())
-    expect(result).toBe('What you expect it to be')
+    const { result } = renderHook(() => ${name}())
+    expect(result.current).toBe('What you expect it to be')
   })
 })`
   );
